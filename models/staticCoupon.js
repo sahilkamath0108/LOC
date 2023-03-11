@@ -23,6 +23,22 @@ const staticCouponSchema = new Schema({
     code : {
         type : String,
     },
+    iterations : {
+        type: Number,
+        default : 0,
+    },
+    limit : {
+        type: Number,
+        required : true,
+    },
+    limitReached: {
+        type: Boolean,
+        default: false
+    },
+    usedBy : [{
+        type: mongoose.Types.ObjectId,
+        ref : "user"
+    }],
     expiryDate : {
         type: Date
     },

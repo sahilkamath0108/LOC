@@ -60,6 +60,10 @@ const userSchema = new Schema({
     couponsBought : [{
         type : mongoose.Types.ObjectId,
         ref : 'staticCoupon'
+    }],
+    reviews: [{
+        type: mongoose.Types.ObjectId,
+        ref: "review"
     }]
 }, {timestamps: true});
 

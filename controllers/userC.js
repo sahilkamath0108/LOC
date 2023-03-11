@@ -12,6 +12,19 @@ const multer = require("multer");
 
 const cloudinary = require("cloudinary").v2
 
+function makeid(length) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 cloudinary.config({ 
   cloud_name: 'dsfgjocyn', 
   api_key: process.env.CLOUD_API_KEY, 
@@ -138,17 +151,21 @@ const updateInterests = async(req, res) => {
 		)
         console.log('User interests have been updated');
         res.status(200).json({
-            success: true
+            success: true,
+            data: data
         });
-	} catch (error) {
-		
+	} catch (err) {
+		res.status(500).json({
+      success: false,
+      message: err.message
+  })
 	}
 }
 
 // View all coupons
 const allCoupons = async(req, res) => {
   	try {
-		result = await StaticCouponSchema.find().sort({createdAt: -1});
+		result = await StaticCouponSchema.find().sort({createdAt: -1}).select("-code -usedBy")
 		res.status(200).json({
             success: true,
             data: result
@@ -167,10 +184,23 @@ const allCoupons = async(req, res) => {
 const interestCoupons = async(req, res) => {
 	try {
 		const interests = req.user.interests;
-		result = await StaticCouponSchema.find();// Complete this
+    let array = []
+
+    const user = req.user
+
+    let tempData = await UserSchema.findById({_id : req.user._id})
+
+    tempData.interests.forEach(async (interest) => {
+      let coupon = await StaticCouponSchema.find({category : interest}).select("-code -usedBy")
+      coupon.forEach(async (ele) => {
+        array.push(ele)
+      })
+    })
+
+		result = await StaticCouponSchema.find().select("-code -usedBy");// Complete this
 		res.status(200).json({
             success: true,
-            data: result
+            data: array
         });
         console.log('All coupons fetched successfully');
   	} catch (error) {
@@ -188,8 +218,8 @@ const filteredCoupons = async(req, res) => {
 		const category = req.body.category;
 		const discountRange = req.body.discountRange;
 
-		result = await StaticCouponSchema.find({}) // 
-		// { category: { $elemMatch: { category: "", discountRange: { } } } }
+		const result = await StaticCouponSchema.find( { discount : { $gte : discountRange}, category : category} ).populate("usedBy reviews").select("-code -usedBy") 
+		
 
 		res.status(200).json({
 			success: true,
@@ -209,7 +239,7 @@ const getCoupon = async(req, res) => {
 	const couponId = req.params.couponId;
 	const userId = req.user._id;
 	try {
-		const result = await StaticCouponSchema.findOne({_id: couponid}).populate("usedBy reviews");
+		const result = await StaticCouponSchema.findOne({_id: couponId}).populate("usedBy reviews").select("-code -usedBy");
         console.log('Fetched coupon successfully');
         res.status(200).json({
             success: true,
@@ -234,21 +264,28 @@ const useCoupon = async(req, res) => {
 			{$push: {couponsBought: couponId} })
 		await user_data.save();
 
-		coupon_data = await StaticCouponSchema.findOneAndUpdate(
-            {_id: couponid},
+		const coupon_data = await StaticCouponSchema.findOneAndUpdate(
+            {_id: couponId},
             {$push: {usedBy: userId}, $inc: {iterations: 1} })
-		await coupon_data.save();
+
+    await StaticCouponSchema.findOneAndUpdate({_id : couponId}, { $push : {tempCode : coupon_data.code}})
+		
 
 		if (coupon_data.iterations == coupon_data.limit) {
 			coupon_data = await StaticCouponSchema.findOneAndUpdate(
-				{_id: couponid},
+				{_id: couponId},
 				{$set: { limitReached : true }})
 			await coupon_data.save();
 		}
 
+    const newCode = makeid(8)
+
+    await StaticCouponSchema.findOneAndUpdate({_id : couponId}, {code : newCode})
+
         console.log('Coupon use has been updated in user and coupon schema');
         res.status(200).json({
-            success: true
+            success: true,
+            data: coupon_data
         });
 	} catch (error) {
 		console.log(error);
@@ -277,6 +314,31 @@ const writeReview = async(req, res) => {
 	}
 }
 
+//all company page that user can see
+
+const allCompanies = async (req,res) => {
+  try{
+    const allcompanies = await CompanySchema.find().select("-password").populate("staticCoupon followers")
+
+  res.status(200).json({
+    success: true,
+    data: allcompanies
+  })}catch(err){
+    res.status(500).json({
+      success: false,
+      message: err.message
+  })
+  }
+}
+
+//company ke coupons
+
+const companySelfCoupons = async (req,res) => {
+  const companyId = req.params.collegeId
+  const company = await CompanySchema.find({_id : companyId}).select("-password").populate("staticCoupon followers")
+
+} 
+
 // Follow a company
 
 module.exports = {
@@ -290,5 +352,6 @@ module.exports = {
 	filteredCoupons,
 	getCoupon,
 	useCoupon,
-	writeReview
+	writeReview,
+  allCompanies
 }

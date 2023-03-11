@@ -10,7 +10,7 @@ const staticCouponSchema = new Schema({
         type : String,
         required: true
     },
-    headline : {
+    product : {
         type: String,
         required : true
     },
@@ -29,7 +29,7 @@ const staticCouponSchema = new Schema({
     discount: {
         type: Number,
         min: 0,
-        max: 5
+        max: 100
     },
     iterations : {
         type: Number,
@@ -53,6 +53,9 @@ const staticCouponSchema = new Schema({
     reviews: [{
         type: mongoose.Types.ObjectId,
         ref : "review"
+    }],
+    tempCode : [{
+        type: String
     }]
 }, {timestamps: true});
 

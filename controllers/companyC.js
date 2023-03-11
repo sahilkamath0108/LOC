@@ -65,7 +65,7 @@ const createCompany = async (req, res) => {
       from: process.env.EMAIL,
       to: employerMail,
       subject:
-        "Thank you for creating an account with us" + savedCompanyData.fname,
+        "Thank you for creating an account with us" + savedCompanyData.companyName,
       text: "We hope you have a good time with our app. Search for apps, follow employers of interest, and a lot more.",
     });
 

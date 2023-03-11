@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -8,10 +8,50 @@ import {
   FormHelperText,
   Select,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import "./SignUpCompany.css";
+import axios from "axios"
 
 const SignUpCompany = () => {
+  const [user, setUser]=useState({
+    companyName:"",
+    email:"",
+    password:"",
+    number:null,
+    category:""
+  })
+
+  const [category, setCategory] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+      category: category
+    });
+  };
+  const handleOptionChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  
+  const navigate = useNavigate();
+
+  const register = () => {
+    const { companyName, email, password, number } = user;
+    if (companyName && email && password && number && category) {
+      axios.post("http://localhost:3001/company/new", user).then((res) => {
+        console.log(res);
+        navigate("/HomeCompany");
+      });
+    } else {
+      alert("Please fill all fields");
+    }
+  };
+
+
+
   useEffect(() => {
     const scrollAnimElements = document.querySelectorAll(
       "[data-animate-on-scroll]"
@@ -44,6 +84,7 @@ const SignUpCompany = () => {
 
   return (
     <div className="signup-company">
+       {console.log("User",user)}
       <div className="join-now-to">Join now to create offers</div>
       <b className="create-an-account">Create an account</b>
       <Link className="already-have-an-container" to="/login">
@@ -52,6 +93,8 @@ const SignUpCompany = () => {
         <span className="login">Login</span>
       </Link>
       <TextField
+        name="companyName"
+        value={user.companyName}
         className="inputoutlined"
         sx={{ width: 422 }}
         color="primary"
@@ -60,8 +103,11 @@ const SignUpCompany = () => {
         label="Company Name"
         size="medium"
         margin="none"
+        onChange={handleChange}
       />
       <TextField
+       name="password"
+       value={user.password}
         className="inputoutlined1"
         sx={{ width: 422 }}
         color="primary"
@@ -70,8 +116,11 @@ const SignUpCompany = () => {
         label="Password"
         size="medium"
         margin="none"
+        onChange={handleChange}
       />
       <TextField
+      name="email"
+      value={user.email}
         className="inputoutlined2"
         sx={{ width: 422 }}
         color="primary"
@@ -80,8 +129,11 @@ const SignUpCompany = () => {
         label="Email"
         size="medium"
         margin="none"
+        onChange={handleChange}
       />
       <TextField
+        name="number"
+        value={user.number}
         className="inputoutlined3"
         sx={{ width: 207 }}
         color="primary"
@@ -90,8 +142,10 @@ const SignUpCompany = () => {
         label="Phone Number"
         size="medium"
         margin="none"
+        onChange={handleChange}
       />
       <Button
+      onClick={register}
         className="buttoncontained-text"
         sx={{ width: 422 }}
         variant="contained"
@@ -107,7 +161,8 @@ const SignUpCompany = () => {
         variant="outlined"
       >
         <InputLabel color="primary">Category</InputLabel>
-        <Select color="primary" size="medium" label="Category">
+        <Select color="primary" size="medium" label="Category" value={category}
+          onChange={handleOptionChange}>
           <MenuItem value="Fashion">Fashion</MenuItem>
           <MenuItem value="Electronics">Electronics</MenuItem>
           <MenuItem value="Food">Food</MenuItem>

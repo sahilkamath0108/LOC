@@ -9,6 +9,9 @@ import SignUpCompany from "./pages/SignUpCompany";
 import SignUpUser from "./pages/SignUpUser";
 import Login from "./pages/Login";
 import { useEffect } from "react";
+import Home from "./pages/Home";
+import HomeCompany from "./pages/HomeCompany";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   const action = useNavigationType();
@@ -60,10 +63,13 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<SignUp />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/signupcompany" element={<SignUpCompany />} />
       <Route path="/signupuser" element={<SignUpUser />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/Home" element={<Home />} />
+      <Route path="/HomeCompany" element={<HomeCompany />} />
+      <Route path="/" element={<LandingPage />} />
     </Routes>
   );
 }

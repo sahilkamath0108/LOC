@@ -8,15 +8,18 @@ import {
   FormHelperText,
   Select,
 } from "@mui/material";
-import { Link, Redirect } from "react-router-dom"; // import Redirect component
+import { Link,  useNavigate } from "react-router-dom"; // import Redirect component
 import "./Login.css";
 import axios from "axios";
 
+
 const Login = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  
   const [selectedOption, setSelectedOption] = useState("");
   const [accessToken, setAccessToken] = useState("");
   const [loggedIn, setLoggedIn] = useState(false); // state to track if user is logged in
@@ -39,7 +42,6 @@ const Login = () => {
       return;
     }
 
-
     const loginEndpoint =
       selectedOption === "User"
         ? "http://localhost:3001/user/login"
@@ -52,6 +54,12 @@ const Login = () => {
         localStorage.setItem("accessToken", accessToken);
         setLoggedIn(true); // set loggedIn to true upon successful login
         console.log(res);
+           // Conditionally navigate to the appropriate homepage
+      if (selectedOption === "User") {
+        navigate("/Home");
+      } else {
+        navigate("/HomeCompany");
+      }
       })
       .catch((err) => console.error(err));
   };
@@ -59,6 +67,9 @@ const Login = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
+      // Set the access token in the header for future API calls
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      
       // TODO: Make API call to get user information using the access token
     }
   }, []);
@@ -98,7 +109,7 @@ const Login = () => {
       {console.log("User",user)}
       <div className="welcome-back">Welcome back</div>
       <b className="login-to-your">Login to your account</b>
-      <Link className="dont-have-an-container" to="/">
+      <Link className="dont-have-an-container" to="/signup">
         <span>Dont have an account?</span>
         <span className="span2">{` `}</span>
         <span className="signup1">SignUp</span>

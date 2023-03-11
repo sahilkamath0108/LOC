@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 body {
@@ -11,14 +11,29 @@ body {
 
   /* font sizes */
   --font-size-base: 16px;
-  --font-size-9xl: 28px;
   --font-size-xl: 20px;
+  --font-size-smi: 13px;
+  --font-size-13xl: 32px;
+  --font-size-9xl: 28px;
+  --font-size-16xl: 35px;
+  --font-size-mid: 17px;
 
   /* Colors */
   --color-white: #fff;
-  --color-steelblue: #2b6cb0;
+  --color-darkslateblue-100: #31326f;
   --color-black: #000;
-  --color-dimgray: #616161;
+  --color-orange: #ffbe00;
   --color-gray: #1a202c;
+  --color-gray-100: rgba(0, 0, 0, 0.75);
+  --color-steelblue: #2b6cb0;
+  --color-dimgray: #616161;
   --color: #2d3748;
+
+  /* border radiuses */
+  --br-6xs: 7px;
+  --br-3xs: 10px;
+  --br-81xl: 100px;
+  --br-xl: 20px;
+  --br-196xl: 215px;
+  --br-231xl: 250px;
 }

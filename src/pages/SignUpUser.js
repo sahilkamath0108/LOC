@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { TextField, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
 import "./SignUpUser.css";
 import axios from "axios"
 
@@ -26,6 +26,8 @@ const SignUpUser = () => {
     })
     
   }
+  const navigate = useNavigate();
+
   const register=()=>{
     const {fname,lname,email,password,number}=user
     if(fname && lname && email && password && number)
@@ -33,6 +35,7 @@ const SignUpUser = () => {
      
       axios.post("http://localhost:3001/user/new",user)
       .then(res=>console.log(res))
+      navigate("/Home");
     }
     else{
       alert("Please fill all fileds")

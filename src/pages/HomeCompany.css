@@ -1,0 +1,298 @@
+.homecompany-child {
+    position: absolute;
+    top: 899px;
+    left: 300px;
+    width: 1286px;
+    height: 522px;
+  }
+  .homecompany-item {
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 1490px;
+    height: 754px;
+  }
+  .homecompany-inner,
+  .rectangle-icon {
+    position: absolute;
+    top: 16px;
+    left: 36px;
+    width: 78px;
+    height: 76px;
+    object-fit: cover;
+  }
+  .rectangle-icon {
+    top: 24px;
+    left: 87px;
+    width: 245px;
+    height: 61px;
+  }
+  .brands,
+  .home,
+  .notifications {
+    text-decoration: none;
+    position: absolute;
+    top: 38px;
+    left: 1033px;
+    font-weight: 500;
+    color: inherit;
+  }
+  .brands,
+  .notifications {
+    left: 1139px;
+  }
+  .notifications {
+    left: 1254px;
+  }
+  .ellipse-icon {
+    position: absolute;
+    top: 25px;
+    left: 1414px;
+    width: 53px;
+    height: 53px;
+    object-fit: cover;
+  }
+  .line-div {
+    position: absolute;
+    top: 64.5px;
+    left: 1016.5px;
+    border-top: 3px solid var(--color-orange);
+    box-sizing: border-box;
+    width: 80px;
+    height: 3px;
+  }
+  .category,
+  .filters {
+    position: absolute;
+    top: 111px;
+    left: 36px;
+    font-size: var(--font-size-lg);
+  }
+  .category {
+    top: 157px;
+    font-weight: 600;
+    color: var(--color-black);
+  }
+  .coupons-posted-by,
+  .discount-range {
+    position: absolute;
+    top: 137px;
+    left: 422px;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+  }
+  .discount-range {
+    top: 600px;
+    left: 36px;
+    font-size: var(--font-size-lg);
+    color: var(--color-black);
+  }
+  .icon-chevron-right {
+    position: absolute;
+    height: 0.69%;
+    width: 1.18%;
+    top: 8.52%;
+    right: 86.51%;
+    bottom: 90.79%;
+    left: 12.3%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .checkboxdefault-checkbox-and {
+    position: absolute;
+    top: 191px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and1 {
+    position: absolute;
+    top: 231px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and2 {
+    position: absolute;
+    top: 271px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and3 {
+    position: absolute;
+    top: 311px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and4 {
+    position: absolute;
+    top: 351px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and5 {
+    position: absolute;
+    top: 391px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and6 {
+    position: absolute;
+    top: 431px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and7 {
+    position: absolute;
+    top: 471px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and8 {
+    position: absolute;
+    top: 511px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and9 {
+    position: absolute;
+    top: 551px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and10 {
+    position: absolute;
+    top: 642px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and11 {
+    position: absolute;
+    top: 682px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and12 {
+    position: absolute;
+    top: 722px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and13 {
+    position: absolute;
+    top: 762px;
+    left: 36px;
+  }
+  .checkboxdefault-checkbox-and14 {
+    position: absolute;
+    top: 802px;
+    left: 36px;
+  }
+  .group-child,
+  .group-item {
+    position: absolute;
+    top: 0;
+    left: 19px;
+    border-radius: var(--br-xl);
+    background-color: var(--color-darkslateblue-100);
+    width: 250px;
+    height: 246px;
+  }
+  .group-item {
+    top: 112px;
+    background-color: var(--color-orange);
+    height: 181px;
+  }
+  .group-inner,
+  .rectangle-div {
+    position: absolute;
+    top: 186px;
+    left: 0;
+    border-radius: var(--br-81xl);
+    background-color: var(--color-aliceblue);
+    width: 40px;
+    height: 38px;
+  }
+  .rectangle-div {
+    left: 249px;
+  }
+  .fashion,
+  .hm {
+    position: absolute;
+    left: 101px;
+    font-weight: 600;
+  }
+  .hm {
+    top: 9px;
+    display: inline-block;
+    width: 48px;
+    height: 23px;
+  }
+  .fashion {
+    top: 32px;
+    font-size: 14px;
+  }
+  .group-child1 {
+    position: absolute;
+    top: 11px;
+    left: 34px;
+    border-radius: var(--br-3xs);
+    width: 53px;
+    height: 52px;
+    object-fit: cover;
+  }
+  .group-child2 {
+    position: absolute;
+    top: 55px;
+    left: 101px;
+    border-radius: var(--br-6xs);
+    background-color: var(--color-orange);
+    width: 71px;
+    height: 27px;
+  }
+  .div {
+    position: absolute;
+    top: 57px;
+    left: 112px;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-black);
+  }
+  .group-child3 {
+    position: absolute;
+    top: 205px;
+    left: 39px;
+    border-top: 2px dashed var(--color-black);
+    box-sizing: border-box;
+    width: 211px;
+    height: 2px;
+  }
+  .icon-link-alt {
+    position: absolute;
+    height: 5.14%;
+    width: 8.64%;
+    top: 46.31%;
+    right: 74.63%;
+    bottom: 48.56%;
+    left: 16.73%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  .buttontext-only {
+    position: absolute;
+    top: 128px;
+    left: 76px;
+  }
+  .buttoncontained-text {
+    position: absolute;
+    top: 236px;
+    left: 67px;
+  }
+  .rectangle-parent {
+    position: absolute;
+    top: 184px;
+    left: 401px;
+    width: 289px;
+    height: 293px;
+    font-size: var(--font-size-xl);
+    color: var(--color-white);
+  }
+  .homecompany {
+    position: relative;
+    background-color: var(--color-white);
+    width: 100%;
+    height: 1420px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-base);
+    color: var(--color-darkslateblue-100);
+    font-family: var(--font-poppins);
+  }
+  

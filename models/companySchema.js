@@ -6,6 +6,9 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config();
 
 const companySchema = new Schema({
+    companyName: {
+        type: String
+    },
     profilePic: {
         type: String
     },

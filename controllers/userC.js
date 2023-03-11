@@ -152,8 +152,13 @@ const filteredCoupons = async (req, res) => {
 		const category = req.body.category;
 		const discountRange = req.body.discountRange;
 
+		result = await StaticCouponSchema.find({})
 	} catch (error) {
-		
+		console.log(error);
+        res.status(404).json({
+            success: false,
+            message: error.message
+        });
 	}
 }
 

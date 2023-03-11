@@ -12,18 +12,22 @@ const multer = require("multer");
 
 const cloudinary = require("cloudinary").v2
 
-function makeid(length) {
-  let result = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
+function generateRandomString(length, type) {
+	let result = '';
+	const characters = {
+	  numeric: '0123456789',
+	  alphanumeric: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+	  alphabetic: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+	};
+  
+	const chars = characters[type] || characters.alphanumeric; // default to alphanumeric if type is not specified
+  
+	for (let i = 0; i < length; i++) {
+	  result += chars.charAt(Math.floor(Math.random() * chars.length));
+	}
+  
+	return result;
   }
-  return result;
-}
 
 cloudinary.config({ 
   cloud_name: 'dsfgjocyn', 
@@ -258,6 +262,14 @@ const getCoupon = async(req, res) => {
 const useCoupon = async(req, res) => {
 	const couponId = req.params.couponId;
 	const userId = req.user._id;
+
+	const coupon = await StaticCouponSchema.findById({_id : couponId})
+
+	const code = generateRandomString(req.body.length, coupon.type)
+
+	coupon.code = code 
+	await coupon.save()
+
 	try {
 		user_data = await UserSchema.findOneAndUpdate(
 			{_id: userId},
@@ -278,10 +290,6 @@ const useCoupon = async(req, res) => {
 				{$set: { limitReached : true }})
 			await coupon_data.save();
 		}
-
-    const newCode = makeid(8)
-
-    await StaticCouponSchema.findOneAndUpdate({_id : couponId}, {code : newCode})
 
         console.log('Coupon use has been updated in user and coupon schema');
         res.status(200).json({

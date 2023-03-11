@@ -13,6 +13,11 @@ const staticCouponSchema = new Schema({
         type: String,
         required : true
     },
+    type: {
+        type :String,
+        enum : ["numeric", "alphanumeric", "alphabetic"],
+        required : true
+    },
     detail: {
         type: String
     },

@@ -23,6 +23,14 @@ const staticCouponSchema = new Schema({
     code : {
         type : String,
     },
+    category: {
+        type: String
+    },
+    discountRange: {
+        type: Number,
+        min: 0,
+        max: 5
+    },
     iterations : {
         type: Number,
         default : 0,

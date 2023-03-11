@@ -25,7 +25,7 @@ const userSchema = new Schema({
         }
     },
     profilePic: {
-        type: Buffer
+        type: String
     },
     email: {
         type: String,
@@ -53,6 +53,9 @@ const userSchema = new Schema({
     OTP: {
         type: Number,
     },
+    interests: [{
+        type: String
+    }],
     following: [{
         type : mongoose.Types.ObjectId,
         ref: 'company'

@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const UserSchema = require("../models/userSchema");
 const CompanySchema = require("../models/companySchema");
-const StaticCouponSchema = require("../models/staticCoupon")
+const StaticCouponSchema = require("../models/staticCoupon");
 
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
@@ -31,8 +31,7 @@ const fileVerifyPfp = multer({
 });
 
 
-//create user
-
+// Create user
 const createUser = async (req, res) => {
     try {
       let userData = new UserSchema(req.body);
@@ -63,8 +62,7 @@ const createUser = async (req, res) => {
     }
   };
 
-//upload profile picture
-
+// Upload profile picture
 const uploadPfp = async (req, res) => {
     try {
       const buffer = req.file.buffer;
@@ -81,8 +79,7 @@ const uploadPfp = async (req, res) => {
     }
   };
 
-//login user via email, password
-
+// Login user via email, password
 const loginUser = async (req, res) => {
     try {
       const email = req.body.email;
@@ -117,9 +114,47 @@ const loginUser = async (req, res) => {
     }
 };
 
+// View all coupons
+const allCoupons = async (req, res) => {
+  	try {
+    	const interests = req.user.interests;
+		result = await StaticCouponSchema.find().sort({createdAt: -1});
+		res.status(200).json({
+            success: true,
+            data: result
+        });
+        console.log('All coupons fetched successfully');
+  	} catch (error) {
+		console.log(error);
+        res.status(404).json({
+            success: false,
+            message: error.message
+        });
+  	}
+}
+
+// Filtered coupons
+const filteredCoupons = async (req, res) => {
+	try {
+		const category = req.body.category;
+		const discountRange = req.body.discountRange;
+
+	} catch (error) {
+		
+	}
+}
+
+// Update interests
+
+// Get coupons
+
+// Write a review
+
 module.exports = {
     createUser,
     uploadPfp,
     loginUser,
-    fileVerifyPfp
+    fileVerifyPfp,
+	allCoupons,
+	filteredCoupons
 }

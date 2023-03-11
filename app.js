@@ -28,8 +28,8 @@ app.use('/user',userRoutes)
 app.use('/company',companyRoutes)
 
 
-app.listen(process.env.PORT || 3000, ()=>{
-  console.log('The server is up and running at port 3000')
+app.listen(process.env.PORT || 3001, ()=>{
+  console.log('The server is up and running at port 3001')
 })
 
 

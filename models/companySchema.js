@@ -44,7 +44,7 @@ const companySchema = new Schema({
     },
     staticCoupon: [{
         type : mongoose.Types.ObjectId,
-        ref: 'employer'
+        ref: 'staticCoupon'
     }],
     followers : [{
         type : mongoose.Types.ObjectId,
@@ -74,5 +74,5 @@ companySchema.methods.genAuthToken = async function(){
     return accessToken
 }
 
-const UserSchema = mongoose.model("company", companySchema)
-module.exports = UserSchema
+const CompanySchema = mongoose.model("company", companySchema)
+module.exports = CompanySchema

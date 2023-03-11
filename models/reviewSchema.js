@@ -8,6 +8,10 @@ require('dotenv').config();
 const reviewSchema = new Schema({
     user: {
         type: mongoose.Types.ObjectId,
+        ref: "user"
+    },
+    company: {
+        type: String
     },
     fname: {
         type: String,

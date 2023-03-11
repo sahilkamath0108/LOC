@@ -1,0 +1,111 @@
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.create-an-account,
+.join-now-to {
+  position: absolute;
+  left: 987px;
+}
+.join-now-to {
+  top: 126px;
+}
+.create-an-account {
+  top: 162px;
+  font-size: var(--font-size-9xl);
+  color: var(--color-gray);
+}
+.span {
+  color: var(--color-black);
+}
+.login {
+  color: var(--color-steelblue);
+}
+.already-have-an-container {
+  cursor: pointer;
+  text-decoration: none;
+  position: absolute;
+  top: 616px;
+  left: 1053px;
+  font-size: var(--font-size-base);
+  text-align: center;
+  color: var(--color-dimgray);
+}
+.already-have-an-container:hover {
+  cursor: pointer;
+}
+.inputoutlined {
+  top: 242px;
+}
+.inputoutlined,
+.inputoutlined1,
+.inputoutlined2,
+.inputoutlined3 {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  left: 987px;
+}
+.inputoutlined1 {
+  top: 468px;
+}
+.inputoutlined2 {
+  top: 397px;
+}
+.inputoutlined3 {
+  top: 325px;
+}
+.buttoncontained-text {
+  position: absolute;
+  top: 558px;
+  left: 987px;
+}
+.signup-company-child,
+.signup-company-item {
+  position: absolute;
+  top: 24px;
+  left: 1191px;
+  width: 78px;
+  height: 76px;
+  object-fit: cover;
+}
+.signup-company-item {
+  top: 32px;
+  left: 1242px;
+  width: 245px;
+  height: 61px;
+}
+.selectoutlined,
+.won-3-icon {
+  position: absolute;
+  top: 325px;
+  left: 1205px;
+}
+.won-3-icon {
+  top: 80px;
+  left: 108px;
+  width: 709px;
+  height: 550px;
+  overflow: hidden;
+  opacity: 0;
+}
+.won-3-icon.animate {
+  animation: 2s ease 0s 1 normal forwards slide-in-left;
+}
+.signup-company {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 710px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color);
+  font-family: var(--font-poppins);
+}

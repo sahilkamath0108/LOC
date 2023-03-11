@@ -1,0 +1,103 @@
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.login-to-your,
+.welcome-back {
+  position: absolute;
+  left: 1036px;
+}
+.welcome-back {
+  top: 158px;
+}
+.login-to-your {
+  top: 194px;
+  font-size: var(--font-size-9xl);
+  color: var(--color-gray);
+}
+.span2 {
+  color: var(--color-black);
+}
+.signup1 {
+  color: #31326f;
+}
+.dont-have-an-container {
+  cursor: pointer;
+  text-decoration: none;
+  position: absolute;
+  top: 573px;
+  left: 1068px;
+  font-size: var(--font-size-base);
+  text-align: center;
+  color: var(--color-dimgray);
+}
+.dont-have-an-container:hover {
+  cursor: pointer;
+}
+.inputoutlined10,
+.inputoutlined9 {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  left: 1036px;
+}
+.inputoutlined9 {
+  top: 274px;
+}
+.inputoutlined10 {
+  top: 355px;
+}
+.buttoncontained-text2 {
+  position: absolute;
+  top: 512px;
+  left: 1036px;
+}
+.login-child,
+.login-item {
+  position: absolute;
+  top: 24px;
+  left: 1191px;
+  width: 78px;
+  height: 76px;
+  object-fit: cover;
+}
+.login-item {
+  top: 32px;
+  left: 1242px;
+  width: 245px;
+  height: 61px;
+}
+.won-3-icon2 {
+  position: absolute;
+  top: 80px;
+  left: 108px;
+  width: 709px;
+  height: 550px;
+  overflow: hidden;
+  opacity: 0;
+}
+.won-3-icon2.animate {
+  animation: 2s ease 0s 1 normal forwards slide-in-left;
+}
+.selectoutlined1 {
+  position: absolute;
+  top: 435px;
+  left: 1036px;
+}
+.login2 {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 710px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color);
+  font-family: var(--font-poppins);
+}

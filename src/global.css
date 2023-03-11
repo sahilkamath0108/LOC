@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-poppins: Poppins;
+
+  /* font sizes */
+  --font-size-base: 16px;
+  --font-size-9xl: 28px;
+  --font-size-xl: 20px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-steelblue: #2b6cb0;
+  --color-black: #000;
+  --color-dimgray: #616161;
+  --color-gray: #1a202c;
+  --color: #2d3748;
+}

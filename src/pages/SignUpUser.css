@@ -1,0 +1,118 @@
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.create-an-account1,
+.join-now-for {
+  position: absolute;
+  left: 987px;
+}
+.join-now-for {
+  top: 126px;
+}
+.create-an-account1 {
+  top: 162px;
+  font-size: var(--font-size-9xl);
+  color: var(--color-gray);
+}
+.span1 {
+  color: var(--color-black);
+}
+.login1 {
+  color: var(--color-steelblue);
+}
+.already-have-an-container1 {
+  cursor: pointer;
+  text-decoration: none;
+  position: absolute;
+  top: 563px;
+  left: 1053px;
+  font-size: var(--font-size-base);
+  text-align: center;
+  color: var(--color-dimgray);
+}
+.already-have-an-container1:hover {
+  cursor: pointer;
+}
+.inputoutlined4 {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 242px;
+  left: 987px;
+}
+.inputoutlined5 {
+  top: 242px;
+}
+.inputoutlined5,
+.inputoutlined6,
+.inputoutlined7,
+.inputoutlined8 {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+}
+.inputoutlined5 {
+  left: 1202px;
+}
+.inputoutlined6 {
+  top: 408px;
+  left: 987px;
+}
+.inputoutlined7 {
+  left: 987px;
+  top: 325px;
+}
+.inputoutlined8 {
+  top: 325px;
+  left: 1202px;
+}
+.buttoncontained-text1 {
+  position: absolute;
+  top: 505px;
+  left: 987px;
+}
+.signup-user-child,
+.signup-user-item {
+  position: absolute;
+  top: 24px;
+  left: 1191px;
+  width: 78px;
+  height: 76px;
+  object-fit: cover;
+}
+.signup-user-item {
+  top: 32px;
+  left: 1242px;
+  width: 245px;
+  height: 61px;
+}
+.won-3-icon1 {
+  position: absolute;
+  top: 80px;
+  left: 108px;
+  width: 709px;
+  height: 550px;
+  overflow: hidden;
+  opacity: 0;
+}
+.won-3-icon1.animate {
+  animation: 2s ease 0s 1 normal forwards slide-in-left;
+}
+.signup-user {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 710px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color);
+  font-family: var(--font-poppins);
+}

@@ -1,0 +1,76 @@
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.signup-child {
+  position: absolute;
+  top: 0;
+  left: 796px;
+  width: 671px;
+  height: 726px;
+  opacity: 0;
+}
+.signup-child.animate {
+  animation: 2s ease 0s 1 normal forwards slide-in-right;
+}
+.signup-inner,
+.signup-item {
+  position: absolute;
+  object-fit: cover;
+}
+.signup-item {
+  top: 24px;
+  left: 1191px;
+  width: 78px;
+  height: 76px;
+}
+.signup-inner {
+  top: 32px;
+  left: 1242px;
+  width: 245px;
+  height: 61px;
+}
+.group-icon {
+  position: absolute;
+  top: 75px;
+  left: 63px;
+  width: 608px;
+  height: 520px;
+  opacity: 0;
+}
+.group-icon.animate {
+  animation: 2s ease 0s 1 normal forwards slide-in-left;
+}
+.buttoncontained-text-and-ico,
+.buttoncontained-text-and-ico1 {
+  position: absolute;
+  top: 623px;
+  left: 995px;
+  cursor: pointer;
+}
+.buttoncontained-text-and-ico1 {
+  left: 198px;
+}
+.signup {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 710px;
+  overflow: hidden;
+}

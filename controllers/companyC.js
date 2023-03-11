@@ -71,7 +71,7 @@ const createCompany = async (req, res) => {
       text: "We hope you have a good time with our app. Search for apps, follow employers of interest, and a lot more.",
     });
 
-    let pswd = await EmployeeSchema.findById({ _id: id }).select("-password"); //to hide hashed pswd
+    let pswd = await CompanySchema.findById({ _id: id }).select("-password"); //to hide hashed pswd
 
     const accessToken = await savedCompanyData.genAuthToken();
     res.status(201).json({
@@ -247,7 +247,7 @@ const postStatic = async (req, res) => {
 
     const finalCoupon = await StaticCouponSchema.findOneAndUpdate(
       { _id: coupon._id },
-      { companyName: req.user.companyName, code: code }
+      { companyName: req.user.companyName, code: code, category : req.user.category}
     );
 
     company.followers.forEach((follower) => {

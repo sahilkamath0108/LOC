@@ -6,6 +6,7 @@ const fileUpload = require("express-fileupload")
 
 const companyRoutes = require("./routes/companyRoutes")
 const userRoutes = require("./routes/userRoutes")
+const externalRoutes = require("./routes/verificationAPI.js")
 
 const cors = require("cors")
 const bodyParser = require("body-parser")
@@ -14,10 +15,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json());
 
-var instance = new Razorpay({
-  key_id: process.env.KEY_ID,
-  key_secret: process.env.KEY_SECRET,
-});
+
 
 
 app.use(fileUpload({

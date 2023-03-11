@@ -8,7 +8,6 @@ require('dotenv').config();
 const staticCouponSchema = new Schema({
     companyName: {
         type : String,
-        required: true
     },
     product : {
         type: String,
@@ -48,7 +47,7 @@ const staticCouponSchema = new Schema({
         ref : "user"
     }],
     expiryDate : {
-        type: Date
+        type: String
     },
     reviews: [{
         type: mongoose.Types.ObjectId,

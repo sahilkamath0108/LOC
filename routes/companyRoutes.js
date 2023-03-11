@@ -31,7 +31,7 @@ router.get("/editProfile", auth.authToken, companyC.updateCompany)
 
 //post a static coupon
 
-router.get("/postStatic", auth.authToken, companyC.postStatic)
+router.post("/postStatic", auth.authToken, companyC.postStatic)
 
 //analytics
 

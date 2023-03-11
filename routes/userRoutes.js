@@ -35,4 +35,13 @@ router.put("/useCoupon/:couponId", auth.authToken, userC.useCoupon);
 // Write a review
 router.post("/writeReview/:couponId", auth.authToken, userC.writeReview);
 
+//view all companies
+router.post("/allCompanies", auth.authToken, userC.allCompanies)
+
+// company self coupons
+router.post("/company/:companyId", auth.authToken, userC.companySelfCoupons)
+
+//follow a company
+router.post("/company/:companyId", auth.authToken, userC.followCompany)
+
 module.exports = router;

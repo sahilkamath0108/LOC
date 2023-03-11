@@ -315,7 +315,7 @@ const writeReview = async(req, res) => {
 	}
 }
 
-//all company page that user can see
+//all companies page that user can see
 
 const allCompanies = async (req,res) => {
   try{
@@ -335,15 +335,35 @@ const allCompanies = async (req,res) => {
 //company ke coupons
 
 const companySelfCoupons = async (req,res) => {
-  const companyId = req.params.collegeId
+  const companyId = req.params.companyId
   const company = await CompanySchema.find({_id : companyId}).select("-password").populate("staticCoupon followers")
+  res.status(200).json({
+	success : true,
+	data : company.staticCoupon
+  })
 
 } 
 
 // Follow a company
 
-const follow = async (req,res) => {
-	
+const followCompany = async (req,res) => {
+	try{
+	const companyId = req.params.companyId
+	const userId = req.user._id
+
+	await CompanySchema.findOneAndUpdate({ _id: companyId}, { $push : {followers : userId}})
+	await UserSchema.findOneAndUpdate({ _id: userId}, { $push : {following : companyId}})
+
+	res.status(200).json({
+		success :true,
+		message: "Followed succesfully"
+	})}catch(err){
+		res.status(500).json({
+			success: false,
+			message: err.message
+		})
+	}
+
 }
 
 module.exports = {
@@ -358,5 +378,7 @@ module.exports = {
 	getCoupon,
 	useCoupon,
 	writeReview,
-  allCompanies
+  allCompanies,
+  companySelfCoupons,
+  followCompany
 }

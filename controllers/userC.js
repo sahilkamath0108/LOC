@@ -9,6 +9,15 @@ const nodemailer = require("nodemailer");
 const otpGenerator = require("otp-generator");
 const multer = require("multer");
 
+const cloudinary = require("cloudinary").v2
+
+cloudinary.config({ 
+  cloud_name: 'dsfgjocyn', 
+  api_key: process.env.CLOUD_API_KEY, 
+  api_secret: process.env.CLOUD_API_SECRET,
+  secure: true
+});
+
 let mailTransporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -64,13 +73,17 @@ const createUser = async (req, res) => {
 
 // Upload profile picture
 const uploadPfp = async (req, res) => {
-    try {
-      const buffer = req.file.buffer;
-      req.user.profilePic = buffer;
-      await req.user.save();
-      res.json({
-        success: true,
-      });
+  try {
+    const file = req.files.pfp
+    cloudinary.uploader.upload(file.tempFilePath, (err,result)=> {
+      req.user.profilePic = result.url
+    })
+    // const buffer = req.file.buffer;
+    
+    await req.user.save();
+    res.json({
+      success: true,
+    });
     } catch (err) {
       res.status(500).json({
         success: false,

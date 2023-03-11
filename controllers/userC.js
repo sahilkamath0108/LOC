@@ -3,6 +3,7 @@ require("dotenv").config();
 const UserSchema = require("../models/userSchema");
 const CompanySchema = require("../models/companySchema");
 const StaticCouponSchema = require("../models/staticCoupon");
+const reviewSchema = require("../models/reviewSchema");
 
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
@@ -127,10 +128,26 @@ const loginUser = async (req, res) => {
     }
 };
 
+// Update interests
+const updateInterests = async(req, res) => {
+	try {
+		userid = req.user._id;
+		data = await UserSchema.findOneAndUpdate(
+            {_id: userid},
+            {$set: req.body}
+		)
+        console.log('User interests have been updated');
+        res.status(200).json({
+            success: true
+        });
+	} catch (error) {
+		
+	}
+}
+
 // View all coupons
-const allCoupons = async (req, res) => {
+const allCoupons = async(req, res) => {
   	try {
-    	const interests = req.user.interests;
 		result = await StaticCouponSchema.find().sort({createdAt: -1});
 		res.status(200).json({
             success: true,
@@ -139,40 +156,139 @@ const allCoupons = async (req, res) => {
         console.log('All coupons fetched successfully');
   	} catch (error) {
 		console.log(error);
-        res.status(404).json({
+        res.status(500).json({
             success: false,
             message: error.message
         });
   	}
 }
 
-// Filtered coupons
-const filteredCoupons = async (req, res) => {
+// View coupons of interest
+const interestCoupons = async(req, res) => {
 	try {
-		const category = req.body.category;
-		const discountRange = req.body.discountRange;
-
-		result = await StaticCouponSchema.find({})
-	} catch (error) {
+		const interests = req.user.interests;
+		result = await StaticCouponSchema.find();// Complete this
+		res.status(200).json({
+            success: true,
+            data: result
+        });
+        console.log('All coupons fetched successfully');
+  	} catch (error) {
 		console.log(error);
-        res.status(404).json({
+        res.status(500).json({
             success: false,
             message: error.message
         });
 	}
 }
 
-// Update interests
+// Filtered coupons
+const filteredCoupons = async(req, res) => {
+	try {
+		const category = req.body.category;
+		const discountRange = req.body.discountRange;
 
-// Get coupons
+		result = await StaticCouponSchema.find({}) // 
+		// { category: { $elemMatch: { category: "", discountRange: { } } } }
+
+		res.status(200).json({
+			success: true,
+			data: result
+		})
+	} catch (error) {
+		console.log(error);
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+	}
+}
+
+// Get coupon
+const getCoupon = async(req, res) => {
+	const couponId = req.params.couponId;
+	const userId = req.user._id;
+	try {
+		const result = await StaticCouponSchema.findOne({_id: couponid}).populate("usedBy reviews");
+        console.log('Fetched coupon successfully');
+        res.status(200).json({
+            success: true,
+			data: result
+        });
+	} catch (error) {
+		console.log(error);
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+	}
+}
+
+// Use coupon
+const useCoupon = async(req, res) => {
+	const couponId = req.params.couponId;
+	const userId = req.user._id;
+	try {
+		user_data = await UserSchema.findOneAndUpdate(
+			{_id: userId},
+			{$push: {couponsBought: couponId} })
+		await user_data.save();
+
+		coupon_data = await StaticCouponSchema.findOneAndUpdate(
+            {_id: couponid},
+            {$push: {usedBy: userId}, $inc: {iterations: 1} })
+		await coupon_data.save();
+
+		if (coupon_data.iterations == coupon_data.limit) {
+			coupon_data = await StaticCouponSchema.findOneAndUpdate(
+				{_id: couponid},
+				{$set: { limitReached : true }})
+			await coupon_data.save();
+		}
+
+        console.log('Coupon use has been updated in user and coupon schema');
+        res.status(200).json({
+            success: true
+        });
+	} catch (error) {
+		console.log(error);
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+	}
+}
 
 // Write a review
+const writeReview = async(req, res) => {
+	const couponId = req.params.couponId;
+	const userId = req.user._id;
+	try {
+		review_data = new reviewSchema(req.body);
+      	let savedData = await review_data.save();
+      let id = savedUserData._id;
+      let userMail = savedUserData.email
+	} catch (error) {
+		console.log(error);
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+	}
+}
+
+// Follow a company
 
 module.exports = {
     createUser,
     uploadPfp,
     loginUser,
     fileVerifyPfp,
+	updateInterests,
 	allCoupons,
-	filteredCoupons
+	interestCoupons,
+	filteredCoupons,
+	getCoupon,
+	useCoupon,
+	writeReview
 }

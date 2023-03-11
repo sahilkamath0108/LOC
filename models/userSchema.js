@@ -67,6 +67,12 @@ const userSchema = new Schema({
     reviews: [{
         type: mongoose.Types.ObjectId,
         ref: "review"
+    }],
+    boughtCategories : [{
+        type: String
+    }],
+    tempCode : [{
+        type: String
     }]
 }, {timestamps: true});
 

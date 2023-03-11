@@ -14,6 +14,11 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json());
 
+var instance = new Razorpay({
+  key_id: process.env.KEY_ID,
+  key_secret: process.env.KEY_SECRET,
+});
+
 
 app.use(fileUpload({
   useTempFiles : true
@@ -26,6 +31,9 @@ app.use('/user',userRoutes)
 
 // company
 app.use('/company',companyRoutes)
+
+// external test API
+app.use("/verify", externalRoutes)
 
 
 app.listen(process.env.PORT || 3001, ()=>{

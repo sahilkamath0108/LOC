@@ -53,9 +53,6 @@ const staticCouponSchema = new Schema({
     reviews: [{
         type: mongoose.Types.ObjectId,
         ref : "review"
-    }],
-    tempCode : [{
-        type: String
     }]
 }, {timestamps: true});
 

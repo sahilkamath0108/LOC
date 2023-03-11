@@ -10,6 +10,8 @@ const otpGenerator = require("otp-generator");
 const multer = require("multer");
 const ReviewSchema = require("../models/reviewSchema");
 const cloudinary = require("cloudinary").v2;
+const cron = require("node-cron")
+const shell = require("shelljs")
 
 function makeid(length) {
   let result = "";
@@ -34,7 +36,7 @@ cloudinary.config({
 let mailTransporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    company: process.env.EMAIL,
+    user: process.env.EMAIL,
     pass: process.env.PASSWORD,
   },
   port: 465,
@@ -241,11 +243,23 @@ const postStatic = async (req, res) => {
     const company = await CompanySchema.findOneAndUpdate(
       { email: req.user.email },
       { $push: { staticCoupon: coupon._id } }
-    );
+    ).populate("followers");
+
     const finalCoupon = await StaticCouponSchema.findOneAndUpdate(
       { _id: coupon._id },
       { companyName: req.user.companyName, code: code }
     );
+
+    company.followers.forEach((follower) => {
+      let email = follower.email
+
+      mailTransporter.sendMail({
+        from: process.env.EMAIL,
+        to: email,
+        subject: req.user.companyName + " has posted a new coupon",
+        text: "Since you follow this company on CouponCafe, we thought you would like to view their new offer",
+      });
+    })
 
     res.status(201).json({
       success: true,

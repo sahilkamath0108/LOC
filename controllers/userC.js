@@ -268,7 +268,8 @@ const useCoupon = async(req, res) => {
             {_id: couponId},
             {$push: {usedBy: userId}, $inc: {iterations: 1} })
 
-    await StaticCouponSchema.findOneAndUpdate({_id : couponId}, { $push : {tempCode : coupon_data.code}})
+    await UserSchema.findOneAndUpdate({_id : userId}, { $push : {tempCode : coupon_data.code}})
+	await UserSchema.findOneAndUpdate({_id: userId}, {$push : {boughtCategories : coupon_data.category}})
 		
 
 		if (coupon_data.iterations == coupon_data.limit) {
@@ -303,8 +304,8 @@ const writeReview = async(req, res) => {
 	try {
 		review_data = new reviewSchema(req.body);
       	let savedData = await review_data.save();
-      let id = savedUserData._id;
-      let userMail = savedUserData.email
+      let id = savedData._id;
+      let userMail = savedData.email
 	} catch (error) {
 		console.log(error);
         res.status(500).json({

@@ -342,6 +342,10 @@ const companySelfCoupons = async (req,res) => {
 
 // Follow a company
 
+const follow = async (req,res) => {
+	
+}
+
 module.exports = {
     createUser,
     uploadPfp,

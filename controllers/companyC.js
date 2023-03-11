@@ -1,13 +1,21 @@
 require("dotenv").config();
 
-const EmployeeSchema = require("../models/userSchema");
-const EmployerSchema = require("../models/employerSchema");
-const JobSchema = require("../models/companySchema")
+const UserSchema = require("../models/userSchema");
+const CompanySchema = require("../models/companySchema");
+const StaticCouponSchema = require("../models/staticCoupon")
 
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const otpGenerator = require("otp-generator");
 const multer = require("multer");
+const cloudinary = require("cloudinary").v2
+
+cloudinary.config({ 
+  cloud_name: 'dsfgjocyn', 
+  api_key: process.env.CLOUD_API_KEY, 
+  api_secret: process.env.CLOUD_API_SECRET,
+  secure: true
+});
 
 let mailTransporter = nodemailer.createTransport({
     service: "gmail",
@@ -33,23 +41,23 @@ const fileVerifyPfp = multer({
 
 //create employer
 
-const createEmployer = async (req, res) => {
+const createCompany = async (req, res) => {
     try {
-      let employerData = new EmployerSchema(req.body);
-      let savedEmployerData = await employerData.save();
-      let id = savedEmployerData._id;
-      let employerMail = savedEmployerData.email;
+      let employerData = new CompanySchema(req.body);
+      let savedCompanyData = await employerData.save();
+      let id = savedCompanyData._id;
+      let employerMail = savedCompanyData.email;
   
       mailTransporter.sendMail({
         from: process.env.EMAIL,
         to: employerMail,
-        subject: "Thank you for creating an account with us" + savedEmployerData.fname,
+        subject: "Thank you for creating an account with us" + savedCompanyData.fname,
         text: "We hope you have a good time with our app. Search for apps, follow employers of interest, and a lot more.",
       });
   
       let pswd = await EmployeeSchema.findById({ _id: id }).select("-password"); //to hide hashed pswd
   
-      const accessToken = await savedEmployerData.genAuthToken();
+      const accessToken = await savedCompanyData.genAuthToken();
       res.status(201).json({
         success: true,
         data: pswd,
@@ -67,8 +75,13 @@ const createEmployer = async (req, res) => {
 
 const uploadPfp = async (req, res) => {
     try {
-      const buffer = req.file.buffer;
-      req.user.profilePic = buffer;
+      const file = req.files.pfp
+      cloudinary.uploader.upload(file.tempFilePath, (err,result)=> {
+        console.log(result)
+        req.user.profilePic = result.url
+      })
+      // const buffer = req.file.buffer;
+      
       await req.user.save();
       res.json({
         success: true,
@@ -83,17 +96,17 @@ const uploadPfp = async (req, res) => {
 
 //login user via email, password
 
-const loginEmployer = async (req, res) => {
+const loginCompany = async (req, res) => {
     try {
       const email = req.body.email;
       const password = req.body.password;
-      const user = await EmployerSchema.findOne({ email: email });
+      const user = await CompanySchema.findOne({ email: email });
   
       if (!user) {
         return res.status(400).send({ error: "User does not exist..." });
       }
   
-      const withoutPswd = await EmployerSchema.findOne({ email: email }).select(
+      const withoutPswd = await CompanySchema.findOne({ email: email }).select(
         "-password"
       );
   
@@ -118,8 +131,8 @@ const loginEmployer = async (req, res) => {
 };
 
 module.exports = {
-    createEmployer,
+    createCompany,
     uploadPfp,
-    loginEmployer,
+    loginCompany,
     fileVerifyPfp
 }

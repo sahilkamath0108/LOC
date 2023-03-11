@@ -1,8 +1,8 @@
 require("dotenv").config();
 
 const UserSchema = require("../models/userSchema");
-const EmployerSchema = require("../models/employerSchema");
-const JobSchema = require("../models/jobSchema")
+const CompanySchema = require("../models/companySchema");
+const StaticCouponSchema = require("../models/staticCoupon")
 
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");

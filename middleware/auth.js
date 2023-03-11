@@ -2,9 +2,9 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 
-const UserSchema = require("../models/userSchema");
-const EmployerSchema = require("../models/employerSchema");
-const JobSchema = require("../models/companySchema");
+// const UserSchema = require("../models/userSchema");
+// const EmployerSchema = require("../models/employerSchema");
+// const JobSchema = require("../models/companySchema");
 
 const authToken = async (req, res, next) => {
   try {

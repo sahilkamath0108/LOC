@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const companySchema = new Schema({
     profilePic: {
-        type: Buffer
+        type: String
     },
     email: {
         type: String,
@@ -22,6 +22,10 @@ const companySchema = new Schema({
     role: {
         type: String,
         default: "company"
+    },
+    category: {
+        type: String,
+        required: true
     },
     number: {
         type: Number,

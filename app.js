@@ -2,8 +2,10 @@ const express = require("express")
 require("./db.js")
 require('dotenv').config()
 
-const userRoutes = require("./routes/companyRoutes.js")
-const companyRoutes = require("./routes/userRoutes.js")
+const fileUpload = require("express-fileupload")
+
+const companyRoutes = require("./routes/companyRoutes")
+const userRoutes = require("./routes/userRoutes")
 
 const cors = require("cors")
 const bodyParser = require("body-parser")
@@ -13,14 +15,17 @@ app.use(cors())
 app.use(bodyParser.json());
 
 
+app.use(fileUpload({
+  useTempFiles : true
+}))
 
 app.use(express.json())
 
 // user 
-app.use('/user',employeeRoutes)
+app.use('/user',userRoutes)
 
 // company
-app.use('/employer',employerRoutes)
+app.use('/company',companyRoutes)
 
 
 app.listen(process.env.PORT || 3000, ()=>{

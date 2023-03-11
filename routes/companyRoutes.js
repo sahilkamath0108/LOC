@@ -11,8 +11,10 @@ router.post("/new", companyC.createCompany)
 
 //upload pfp
 
-router.post("/uploadPfp", auth.authToken , companyC.fileVerifyPfp.single('pfp'), companyC.uploadPfp )
+router.post("/uploadPfp", companyC.uploadPfp )
 
 //login employee
 
 router.post("/login", companyC.loginCompany)
+
+module.exports = router

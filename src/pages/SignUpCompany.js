@@ -146,7 +146,7 @@ const SignUpCompany = () => {
       />
       <Button
       onClick={register}
-        className="buttoncontained-text"
+        className="company-register-button"
         sx={{ width: 422 }}
         variant="contained"
         color="primary"
@@ -156,7 +156,7 @@ const SignUpCompany = () => {
       <img className="signup-company-child" alt="" src="/rectangle-5@2x.png" />
       <img className="signup-company-item" alt="" src="/rectangle-6@2x.png" />
       <FormControl
-        className="selectoutlined"
+        className="dropdown-company"
         sx={{ width: 204 }}
         variant="outlined"
       >

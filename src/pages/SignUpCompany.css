@@ -61,7 +61,7 @@
 .inputoutlined3 {
   top: 325px;
 }
-.buttoncontained-text {
+.company-register-button {
   position: absolute;
   top: 558px;
   left: 987px;
@@ -81,7 +81,7 @@
   width: 245px;
   height: 61px;
 }
-.selectoutlined,
+.dropdown-company,
 .won-3-icon {
   position: absolute;
   top: 325px;

@@ -150,7 +150,7 @@ const SignUpUser = () => {
       />
       <Button
       onClick={register}
-        className="buttoncontained-text1"
+        className="user-register-button"
         sx={{ width: 422 }}
         variant="contained"
         color="primary"

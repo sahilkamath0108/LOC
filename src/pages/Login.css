@@ -53,7 +53,7 @@
 .inputoutlined10 {
   top: 355px;
 }
-.buttoncontained-text2 {
+.login-button {
   position: absolute;
   top: 512px;
   left: 1036px;
@@ -85,7 +85,7 @@
 .won-3-icon2.animate {
   animation: 2s ease 0s 1 normal forwards slide-in-left;
 }
-.selectoutlined1 {
+.dropdown-login {
   position: absolute;
   top: 435px;
   left: 1036px;

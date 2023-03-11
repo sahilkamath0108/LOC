@@ -142,7 +142,7 @@ const Login = () => {
       />
       <Button
        onClick={login}
-        className="buttoncontained-text2"
+        className="login-button"
         sx={{ width: 312 }}
         variant="contained"
         color="primary"
@@ -158,7 +158,7 @@ const Login = () => {
         data-animate-on-scroll
       />
       <FormControl
-        className="selectoutlined1"
+        className="dropdown-login"
         sx={{ width: 312 }}
         variant="outlined"
       >

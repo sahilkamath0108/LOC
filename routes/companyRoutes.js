@@ -17,4 +17,16 @@ router.post("/uploadPfp", companyC.uploadPfp )
 
 router.post("/login", companyC.loginCompany)
 
+//get coupons as users
+router.get("/allCoupons", auth.authToken, companyC.allCoupons)
+
+//get profile
+router.get("/allCoupons", auth.authToken, companyC.viewProfile)
+
+//edit profile
+router.get("/editProfile", auth.authToken, companyC.updateCompany)
+
+//post a static coupon
+router.get("/postStatic", auth.authToken, companyC.postStatic)
+
 module.exports = router

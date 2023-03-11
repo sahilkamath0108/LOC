@@ -6,8 +6,8 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config();
 
 const staticCouponSchema = new Schema({
-    company: {
-        type : "String",
+    companyName: {
+        type : String,
         required: true
     },
     headline : {
@@ -26,7 +26,7 @@ const staticCouponSchema = new Schema({
     category: {
         type: String
     },
-    discountRange: {
+    discount: {
         type: Number,
         min: 0,
         max: 5

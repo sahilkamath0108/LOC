@@ -10,6 +10,18 @@ const otpGenerator = require("otp-generator");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2
 
+function makeid(length) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 cloudinary.config({ 
   cloud_name: 'dsfgjocyn', 
   api_key: process.env.CLOUD_API_KEY, 
@@ -20,7 +32,7 @@ cloudinary.config({
 let mailTransporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL,
+      company: process.env.EMAIL,
       pass: process.env.PASSWORD,
     },
     port: 465,
@@ -78,11 +90,11 @@ const uploadPfp = async (req, res) => {
       const file = req.files.pfp
       cloudinary.uploader.upload(file.tempFilePath, (err,result)=> {
         console.log(result)
-        req.user.profilePic = result.url
+        req.company.profilePic = result.url
       })
       // const buffer = req.file.buffer;
       
-      await req.user.save();
+      await req.company.save();
       res.json({
         success: true,
       });
@@ -94,27 +106,27 @@ const uploadPfp = async (req, res) => {
     }
   };
 
-//login user via email, password
+//login company via email, password
 
 const loginCompany = async (req, res) => {
     try {
       const email = req.body.email;
       const password = req.body.password;
-      const user = await CompanySchema.findOne({ email: email });
+      const company = await CompanySchema.findOne({ email: email });
   
-      if (!user) {
-        return res.status(400).send({ error: "User does not exist..." });
+      if (!company) {
+        return res.status(400).send({ error: "Company does not exist..." });
       }
   
       const withoutPswd = await CompanySchema.findOne({ email: email }).select(
         "-password"
       );
   
-      if (await bcrypt.compare(password, user.password)) {
-        const token = await user.genAuthToken();
+      if (await bcrypt.compare(password, company.password)) {
+        const token = await company.genAuthToken();
         res.json({
           success: true,
-          user: withoutPswd,
+          company: withoutPswd,
           token: token,
         });
       } else {
@@ -130,9 +142,118 @@ const loginCompany = async (req, res) => {
     }
 };
 
+//view all coupons
+
+const allCoupons = async (req, res) => {
+  try {
+  result = await StaticCouponSchema.find().sort({createdAt: -1});
+  res.status(200).json({
+          success: true,
+          data: result
+      });
+      console.log('All coupons fetched successfully');
+  } catch (error) {
+  console.log(error);
+      res.status(500).json({
+          success: false,
+          message: error.message
+      });
+  }
+}
+
+//view profile
+
+const viewProfile = async(req,res) => {
+  try{
+    res.status(200).json({
+      success : true,
+      data : req.company
+    })
+  }catch(e){
+    res.status(500).json({
+      success: false,
+      message: error.message
+  })
+  }
+}
+
+//edit profile
+
+const updateCompany = async (req, res) => {
+  // let uname = req.params.uname;
+  let email = req.user.email;
+
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["number", "password"];
+  const isValidOperation = updates.every((update) =>
+    allowedUpdates.includes(update)
+  );
+
+  if (!isValidOperation) {
+    return res.status(400).send({ error: "Invalid Updates!" });
+  }
+
+  let company = await CompanySchema.findOne({ email: email });
+
+  if (!company) {
+    res.status(404).json({
+      success: false,
+      message: "Company not found",
+    });
+  } else {
+    try {
+      await CompanySchema.findOneAndUpdate({ email: email },{ $set: req.body })
+
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(req.body.password, salt);
+      let newPswd = await CompanySchema.findOneAndUpdate({ companyname: uname },{ password: hashedPassword })
+
+      
+      res.status(201).json({
+        success: true,
+        data: req.body,
+      });
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: err.message,
+      });
+    }
+  }
+};
+
+//post a static coupon
+
+const postStatic = async (req,res) => {
+  try{
+    const newCoupon = new StaticCouponSchema(req.body)
+  let coupon = await newCoupon.save();
+
+  const code = makeid(8)
+
+  const company = await CompanySchema.findOneAndUpdate({email : req.user.email}, {$push : {staticCoupon : coupon._id}})
+  const finalCoupon = await StaticCouponSchema.findOneAndUpdate({_id : coupon._id}, {companyName : req.user.companyName, code : code})
+
+  res.status(201).json({
+    success :true,
+    data: finalCoupon
+  })
+}catch(err){
+  res.status(500).json({
+    success: false,
+    message: err.message,
+  })
+}
+
+}
+
 module.exports = {
     createCompany,
     uploadPfp,
     loginCompany,
-    fileVerifyPfp
+    fileVerifyPfp,
+    allCoupons,
+    viewProfile,
+    updateCompany,
+    postStatic
 }

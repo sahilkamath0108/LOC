@@ -2,9 +2,8 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 
-// const UserSchema = require("../models/userSchema");
-// const EmployerSchema = require("../models/employerSchema");
-// const JobSchema = require("../models/companySchema");
+const UserSchema = require("../models/userSchema");
+const CompanySchema = require("../models/companySchema");
 
 const authToken = async (req, res, next) => {
   try {
@@ -16,13 +15,13 @@ const authToken = async (req, res, next) => {
     const user = await UserSchema.findById({ _id: decode._id });
 
     if (!user) {
-      const employer = await EmployerSchema.findById({ _id: decode._id });
-      if (!employer) {
+      const company = await CompanySchema.findById({ _id: decode._id });
+      if (!company) {
         res.status(404).json({
           error: "Wrong credentials",
         });
       } else {
-        req.user = employer;
+        req.user = company;
         next();
       }
     } else {

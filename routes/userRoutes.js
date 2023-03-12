@@ -30,7 +30,7 @@ router.post("/allCoupons", auth.authToken, userC.filteredCoupons);
 router.post("/getCoupon/:couponId", auth.authToken, userC.getCoupon);
 
 // Use a specific coupon
-router.put("/useCoupon/:couponId", auth.authToken, userC.useCoupon);
+router.post("/useCoupon/:couponId", auth.authToken, userC.useCoupon);
 
 // Write a review
 router.post("/writeReview/:couponId", auth.authToken, userC.writeReview);
@@ -43,5 +43,8 @@ router.post("/company/:companyId", auth.authToken, userC.companySelfCoupons)
 
 //follow a company
 router.post("/company/:companyId", auth.authToken, userC.followCompany)
+
+//view self bought  coupons
+router.get("/selfBought", auth.authToken, userC.selfBought)
 
 module.exports = router;

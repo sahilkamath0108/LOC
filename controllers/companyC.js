@@ -14,16 +14,54 @@ const cloudinary = require("cloudinary").v2;
 const cron = require("node-cron")
 const shell = require("shelljs")
 
-function makeid(length) {
-  let result = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
+// cron.schedule("10 * * * * *", async () => {
+//   console.log("hi")
+//   const element = await StaticCouponSchema.find()
+
+//   element.forEach(async (ele) => {
+//     ele.$inc({ expiresInDays : -1})
+
+//     // if(ele.expiresInDays == 1){
+
+//     //   const company = ele.companyName
+
+//     //   const companyFollowers = await CompanySchema.find({companyName : company}).populate("followers")
+//     //   companyFollowers.followers.forEach((follower) => {
+//     //     mailTransporter.sendMail({
+//     //       from: process.env.EMAIL,
+//     //       to: follower.email,
+//     //       subject:
+//     //         "A coupon might be interested in is going to b expire tommorow.",
+//     //       text: "We thought you might want to look into this so you dont regret later.",
+//     //     })
+//     //   })
+
+      
+      
+//     // }
+
+    
+//     if(ele.expiresInDays == 0){
+//       ele.expired = False
+//     }--
+//   })
+
+// })
+
+function generateRandomString(length, type) {
+  let result = '';
+  const characters = {
+    numeric: '0123456789',
+    alphanumeric: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+    alphabetic: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  };
+
+  const chars = characters[type] || characters.alphanumeric; // default to alphanumeric if type is not specified
+
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
+
   return result;
 }
 
@@ -239,7 +277,7 @@ const postStatic = async (req, res) => {
     const newCoupon = new StaticCouponSchema(req.body);
     let coupon = await newCoupon.save();
 
-    const code = makeid(8);
+    // const code = generateRandomString(8,coupon.type);
 
     const company = await CompanySchema.findOneAndUpdate(
       { email: req.user.email },
@@ -248,7 +286,7 @@ const postStatic = async (req, res) => {
 
     const finalCoupon = await StaticCouponSchema.findOneAndUpdate(
       { _id: coupon._id },
-      { companyName: req.user.companyName, code: code, category : req.user.category}
+      { companyName: req.user.companyName, category : req.user.category}
     );
 
     company.followers.forEach((follower) => {

@@ -1,13 +1,20 @@
 import "./Dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+    const home=()=>{
+      navigate("/HomeCompany");
+    }
+    const generatecoupons=()=>{
+      navigate("/CouponGenerator");
+    }
   return (
     <div className="dashboard">
       <img className="dashboard-child" alt="" src="/rectangle-5@2x.png" />
       <img className="dashboard-item" alt="" src="/rectangle-6@2x.png" />
-      <a className="home">Home</a>
-      <a className="brands">Brands</a>
-      <a className="notifications">Notifications</a>
+      <a className="home" onClick={home}>Home</a>
+      <a className="brands" onClick={generatecoupons}>Generate</a>
       <div className="dashboard-inner" />
       <div className="rectangle-div" />
       <div className="dashboard-child1" />

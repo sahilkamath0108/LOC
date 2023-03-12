@@ -1,0 +1,505 @@
+.dashboard-child,
+.dashboard-item {
+  position: absolute;
+  top: 16px;
+  left: 36px;
+  width: 78px;
+  height: 76px;
+  object-fit: cover;
+}
+.dashboard-item {
+  top: 24px;
+  left: 87px;
+  width: 245px;
+  height: 61px;
+}
+.brands {
+  text-decoration: none;
+  position: absolute;
+  top: 40px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslateblue);
+}
+.home {
+  left: 1085px;
+}
+.home,
+.notifications {
+  text-decoration: none;
+  position: absolute;
+  top: 40px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslateblue);
+}
+.brands {
+  left: 1191px;
+}
+.notifications {
+  left: 1306px;
+}
+.dashboard-inner {
+  position: absolute;
+  top: 66.5px;
+  left: 1068.5px;
+  border-top: 3px solid var(--color-orange);
+  box-sizing: border-box;
+  width: 80px;
+  height: 3px;
+}
+.dashboard-child1,
+.rectangle-div {
+  position: absolute;
+  background-color: var(--color-orange);
+  width: 50px;
+}
+.rectangle-div {
+  top: 340px;
+  left: 250px;
+  height: 186px;
+}
+.dashboard-child1 {
+  top: 231px;
+  left: 173px;
+  height: 291px;
+}
+.undraw-statistic-chart-re-w0pk-icon {
+  position: absolute;
+  top: 451px;
+  left: 667px;
+  width: 225px;
+  height: 259px;
+  overflow: hidden;
+}
+.dashboard-child2 {
+  position: absolute;
+  top: 250px;
+  left: 328px;
+  background-color: var(--color-orange);
+  width: 49px;
+  height: 217px;
+}
+.dashboard-child3 {
+  position: absolute;
+  top: 330px;
+  left: 173px;
+  background-color: var(--color-darkslateblue);
+  width: 50px;
+  height: 196px;
+}
+.dashboard-child4 {
+  width: 50px;
+}
+.dashboard-child4,
+.dashboard-child5,
+.dashboard-child6 {
+  position: absolute;
+  background-color: var(--color-darkslateblue);
+}
+.dashboard-child4 {
+  top: 363px;
+  left: 250px;
+  height: 163px;
+}
+.dashboard-child5 {
+  top: 294px;
+  left: 328px;
+  width: 49px;
+  height: 232px;
+}
+.dashboard-child6 {
+  top: 181px;
+  left: 405px;
+  width: 50px;
+  height: 345px;
+}
+.div {
+  position: absolute;
+  top: 258px;
+  left: 373px;
+  font-size: 5px;
+  font-family: var(--font-poppins);
+  color: #71a5de;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 113px;
+  height: 60px;
+}
+.dashboard-child7,
+.line-div {
+  position: absolute;
+  box-sizing: border-box;
+}
+.line-div {
+  top: 146px;
+  left: 121px;
+  border-right: 2px solid var(--color-black);
+  width: 2px;
+  height: 415px;
+}
+.dashboard-child7 {
+  top: 525px;
+  left: 86px;
+  border-top: 2px solid var(--color-black);
+  width: 470px;
+  height: 2px;
+}
+.gt20-headphones {
+  position: absolute;
+  top: 675px;
+  left: 186px;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+.gt20-headphones,
+.l35-watch,
+.s320-headphones {
+  font-size: var(--font-size-base);
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+}
+.s320-headphones {
+  position: absolute;
+  top: 673px;
+  left: 258px;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+.l35-watch {
+  top: 618px;
+  left: 341px;
+}
+.capacity,
+.l35-watch,
+.sales,
+.z60earbuds {
+  position: absolute;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+.z60earbuds {
+  top: 627px;
+  left: 418px;
+  font-size: var(--font-size-base);
+  transform: rotate(-90deg);
+  transform-origin: 0 0;
+}
+.capacity,
+.sales {
+  left: 493px;
+}
+.sales {
+  top: 150px;
+}
+.capacity {
+  top: 169px;
+}
+.dashboard-child8,
+.dashboard-child9 {
+  position: absolute;
+  top: 154px;
+  left: 549px;
+  background-color: var(--color-darkslateblue);
+  width: 16px;
+  height: 14px;
+}
+.dashboard-child9 {
+  top: 174px;
+  background-color: var(--color-orange);
+}
+.div1 {
+  top: 526px;
+  left: 105px;
+}
+.div1,
+.div10,
+.div11,
+.div2 {
+  position: absolute;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+.div2 {
+  top: 416px;
+}
+.div2,
+.div3,
+.div4,
+.div5,
+.div6,
+.div7,
+.div8 {
+  left: 102px;
+}
+.div3,
+.div4,
+.div5,
+.div6,
+.div7,
+.div8,
+.div9 {
+  position: absolute;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+.div3 {
+  top: 386px;
+}
+.div4 {
+  top: 356px;
+}
+.div5 {
+  top: 326px;
+}
+.div6 {
+  top: 296px;
+}
+.div7 {
+  top: 266px;
+}
+.div8 {
+  top: 236px;
+}
+.div9 {
+  top: 206px;
+  left: 98px;
+}
+.div10,
+.div11 {
+  top: 446px;
+  left: 102px;
+}
+.div11 {
+  top: 478px;
+}
+.dashboard-child10 {
+  position: absolute;
+  top: 173px;
+  left: 984px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-skyblue);
+  width: 424px;
+  height: 140px;
+}
+.tech-coupons-can {
+  position: absolute;
+  top: 235px;
+  left: 1016px;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.15px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  width: 359px;
+  height: 78px;
+}
+.ellipse-icon {
+  position: absolute;
+  top: 182px;
+  left: 1008px;
+  width: 53px;
+  height: 53px;
+  object-fit: cover;
+}
+.karen {
+  text-decoration: none;
+  position: absolute;
+  top: 190px;
+  left: 1085px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: inherit;
+}
+.star-icon {
+  position: absolute;
+  top: 215.38px;
+  left: 1083.9px;
+  width: 20.2px;
+  height: 19.21px;
+}
+.dashboard-child11 {
+  left: 1103.9px;
+}
+.dashboard-child11,
+.dashboard-child12,
+.dashboard-child13,
+.dashboard-child14 {
+  position: absolute;
+  top: 215.38px;
+  width: 20.2px;
+  height: 19.21px;
+}
+.dashboard-child12 {
+  left: 1123.9px;
+}
+.dashboard-child13 {
+  left: 1143.9px;
+}
+.dashboard-child14 {
+  left: 1163.9px;
+}
+.dashboard-child15 {
+  position: absolute;
+  top: 341px;
+  left: 984px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-skyblue);
+  width: 424px;
+  height: 140px;
+}
+.tech-coupons-can1 {
+  position: absolute;
+  top: 403px;
+  left: 1016px;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.15px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  width: 359px;
+  height: 78px;
+}
+.dashboard-child16 {
+  position: absolute;
+  top: 350px;
+  left: 1008px;
+  width: 53px;
+  height: 53px;
+  object-fit: cover;
+}
+.karen1 {
+  text-decoration: none;
+  position: absolute;
+  top: 358px;
+  left: 1085px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: inherit;
+}
+.dashboard-child17 {
+  position: absolute;
+  top: 383.38px;
+  left: 1083.9px;
+  width: 20.2px;
+  height: 19.21px;
+}
+.dashboard-child18 {
+  left: 1103.9px;
+}
+.dashboard-child18,
+.dashboard-child19,
+.dashboard-child20,
+.dashboard-child21 {
+  position: absolute;
+  top: 383.38px;
+  width: 20.2px;
+  height: 19.21px;
+}
+.dashboard-child19 {
+  left: 1123.9px;
+}
+.dashboard-child20 {
+  left: 1143.9px;
+}
+.dashboard-child21 {
+  left: 1163.9px;
+}
+.dashboard-child22 {
+  position: absolute;
+  top: 506px;
+  left: 984px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-skyblue);
+  width: 424px;
+  height: 140px;
+}
+.tech-coupons-can2 {
+  position: absolute;
+  top: 568px;
+  left: 1016px;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.15px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  width: 359px;
+  height: 78px;
+}
+.dashboard-child23 {
+  position: absolute;
+  top: 515px;
+  left: 1008px;
+  width: 53px;
+  height: 53px;
+  object-fit: cover;
+}
+.karen2 {
+  text-decoration: none;
+  position: absolute;
+  top: 523px;
+  left: 1085px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: inherit;
+}
+.dashboard-child24 {
+  position: absolute;
+  top: 548.38px;
+  left: 1083.9px;
+  width: 20.2px;
+  height: 19.21px;
+}
+.dashboard-child25 {
+  left: 1103.9px;
+}
+.dashboard-child25,
+.dashboard-child26,
+.dashboard-child27,
+.dashboard-child28 {
+  position: absolute;
+  top: 548.38px;
+  width: 20.2px;
+  height: 19.21px;
+}
+.dashboard-child26 {
+  left: 1123.9px;
+}
+.dashboard-child27 {
+  left: 1143.9px;
+}
+.dashboard-child28 {
+  left: 1163.9px;
+}
+.analysis,
+.reviews {
+  position: absolute;
+  top: 101px;
+  left: 262px;
+  font-size: var(--font-size-lg);
+  letter-spacing: 0.15px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.reviews {
+  top: 127px;
+  left: 1162px;
+}
+.dashboard {
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+  height: 710px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xs);
+  color: var(--color-black);
+  font-family: var(--font-roboto);
+}

@@ -14,6 +14,7 @@ import HomeCompany from "./pages/HomeCompany";
 import LandingPage from "./pages/LandingPage";
 import CouponGenerator from "./pages/CouponGenerator";
 import StaticCoupon from "./pages/StaticCoupon";
+import CouponC from "./pages/CouponC";
 
 function App() {
   const action = useNavigationType();
@@ -74,6 +75,7 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/CouponGenerator" element={<CouponGenerator />} />
       <Route path="/StaticCoupon" element={<StaticCoupon />} />
+      <Route path="/CouponC" element={<CouponC />} />
     </Routes>
   );
 }

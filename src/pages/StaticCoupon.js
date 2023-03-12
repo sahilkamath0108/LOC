@@ -9,8 +9,13 @@ import {
     Select,
   } from "@mui/material";
   import "./StaticCoupon.css";
+  import { useNavigate  } from "react-router-dom";
   
   const StaticCoupon = () => {
+    const navigate = useNavigate();
+  const coupongen=()=>{
+    navigate("/CouponC");
+  }
     return (
       <div className="static-coupon">
         <div className="static-coupon-child" />
@@ -24,7 +29,7 @@ import {
         <div className="input">
           <div className="div6" />
         </div>
-        <Button
+        <Button onClick={coupongen}
           className="buttoncontained-text-and-ico"
           sx={{ width: 591 }}
           variant="contained"
@@ -51,7 +56,7 @@ import {
           color="primary"
           variant="outlined"
           type="text"
-          label="Link"
+          label="[AlphaNumeric/Numberic/Alphabetic]"
           size="medium"
           margin="none"
         />

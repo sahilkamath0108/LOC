@@ -1,0 +1,135 @@
+.static-coupon-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #def4ff;
+    width: 760px;
+    height: 710px;
+  }
+  .static-coupon-inner,
+  .static-coupon-item {
+    position: absolute;
+    top: 16px;
+    left: 36px;
+    width: 78px;
+    height: 76px;
+    object-fit: cover;
+  }
+  .static-coupon-inner {
+    top: 24px;
+    left: 87px;
+    width: 245px;
+    height: 61px;
+  }
+  .generate-coupons,
+  .home1 {
+    text-decoration: none;
+    position: absolute;
+    top: 38px;
+    left: 1033px;
+    font-weight: 500;
+    color: inherit;
+  }
+  .generate-coupons {
+    left: 1139px;
+  }
+  .static-coupon-child1 {
+    position: absolute;
+    top: 25px;
+    left: 1414px;
+    width: 53px;
+    height: 53px;
+    object-fit: cover;
+  }
+  .static-coupon-child2 {
+    position: absolute;
+    top: 64.5px;
+    left: 1137.5px;
+    border-top: 3px solid var(--color-orange);
+    box-sizing: border-box;
+    width: 156px;
+    height: 3px;
+  }
+  .static-coupons {
+    position: absolute;
+    top: 122px;
+    left: 297px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-black);
+  }
+  .div6 {
+    flex: 1;
+    position: relative;
+    display: inline-block;
+    height: 24px;
+  }
+  .input {
+    position: absolute;
+    top: calc(50% - 110px);
+    left: calc(50% - 478px);
+    width: 196px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding: 15px 0;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: var(--font-inter);
+  }
+  .buttoncontained-text-and-ico {
+    position: absolute;
+    top: 513px;
+    left: 87px;
+  }
+  .image_ill{
+    position: absolute;
+    top: 224px;
+    left: 826px;
+    width: 598px;
+    height: 300px;
+    overflow:visible;
+  }
+  .inputoutlined,
+  .inputoutlined1,
+  .inputoutlined2,
+  .inputoutlined3 {
+    border: 0;
+    background-color: transparent;
+    position: absolute;
+    top: 209px;
+    left: 87px;
+  }
+  .inputoutlined1,
+  .inputoutlined2,
+  .inputoutlined3 {
+    top: 400px;
+  }
+  .inputoutlined2,
+  .inputoutlined3 {
+    top: 299px;
+    left: 391px;
+  }
+  .inputoutlined3 {
+    top: 400px;
+  }
+  .selectoutlined2 {
+    position: absolute;
+    top: 301px;
+    left: 87px;
+  }
+  .static-coupon {
+    position: relative;
+    background-color: var(--color-white);
+    width: 100%;
+    height: 710px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-base);
+    color: var(--color-darkslateblue-100);
+    font-family: var(--font-poppins);
+  }
+  

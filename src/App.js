@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import Home from "./pages/Home";
 import HomeCompany from "./pages/HomeCompany";
 import LandingPage from "./pages/LandingPage";
+import CouponGenerator from "./pages/CouponGenerator";
+import StaticCoupon from "./pages/StaticCoupon";
 
 function App() {
   const action = useNavigationType();
@@ -70,6 +72,8 @@ function App() {
       <Route path="/Home" element={<Home />} />
       <Route path="/HomeCompany" element={<HomeCompany />} />
       <Route path="/" element={<LandingPage />} />
+      <Route path="/CouponGenerator" element={<CouponGenerator />} />
+      <Route path="/StaticCoupon" element={<StaticCoupon />} />
     </Routes>
   );
 }

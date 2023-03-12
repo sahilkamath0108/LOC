@@ -26,21 +26,20 @@ router.get("/allCoupons", auth.authToken, companyC.allCoupons)
 router.get("/profile", auth.authToken, companyC.viewProfile)
 
 //edit profile
-
 router.get("/editProfile", auth.authToken, companyC.updateCompany)
 
-//post a static coupon
-
+// Post a static coupon
 router.post("/postStatic", auth.authToken, companyC.postStatic)
 
-//analytics
+// Post a dynamic coupon
+router.post("/postDynamic", auth.authToken, companyC.postDynamic)
+
+// Analytics : 
 
 //all reviews
-
 router.get("/allreviews", auth.authToken, companyC.allReviews)
 
 //bar chart of product wise coupon sales
-
 router.get("/productWise", auth.authToken, companyC.productWiseBarChart)
 
 //bar chart average rating of each product

@@ -3,6 +3,7 @@ require("dotenv").config();
 const UserSchema = require("../models/userSchema");
 const CompanySchema = require("../models/companySchema");
 const StaticCouponSchema = require("../models/staticCoupon");
+const DynamicCouponSchema = require("../models/dynamicCoupon");
 
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
@@ -257,9 +258,56 @@ const postStatic = async (req, res) => {
         from: process.env.EMAIL,
         to: email,
         subject: req.user.companyName + " has posted a new coupon",
-        text: "Since you follow this company on CouponCafe, we thought you would like to view their new offer",
+        text: "Since you follow this company on CouponCafe, we thought you would like to view their new offer.",
       });
     })
+
+    res.status(201).json({
+      success: true,
+      data: finalCoupon,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+// Post a dynamic coupon
+const postDynamic = async(req, res) => {
+  try {
+    const newCoupon = new DynamicCouponSchema(req.body);
+    let coupon = await newCoupon.save();
+
+    limit = req.body.people_limit;
+    user_list = await UserSchema.find(); // To add the find condition
+
+    code = []
+    let i = 0;
+    while ((i < limit) && user_list[i]) {
+      const temp_code = makeid(8);
+      code.append(user_list._id, code);
+
+      let email = user_list[i].email;
+
+      mailTransporter.sendMail({
+        from: process.env.EMAIL,
+        to: email,
+        subject: req.user.companyName + " has gifted you a new coupon",
+        text: "Since you follow this company on CouponCafe, we made this personalized coupon just for you!",
+      });
+    }
+
+    const company = await CompanySchema.findOneAndUpdate(
+      { email: req.user.email },
+      { $push: { dynamicCoupon: coupon._id } }
+    ).populate("followers");
+
+    const finalCoupon = await StaticCouponSchema.findOneAndUpdate(
+      { _id: coupon._id },
+      { companyName: req.user.companyName, codes: code, category : req.user.category}
+    );
 
     res.status(201).json({
       success: true,
@@ -360,6 +408,7 @@ module.exports = {
   viewProfile,
   updateCompany,
   postStatic,
+  postDynamic,
   allReviews,
   productWiseBarChart,
   averageRating

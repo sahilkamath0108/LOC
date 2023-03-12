@@ -51,8 +51,12 @@ const staticCouponSchema = new Schema({
         type: mongoose.Types.ObjectId,
         ref : "user"
     }],
-    expiryDate : {
-        type: String
+    expiresInDays : {    //days
+        type: Number
+    },
+    expired : {
+        type: Boolean,
+        default : false 
     },
     reviews: [{
         type: mongoose.Types.ObjectId,

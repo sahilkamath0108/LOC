@@ -13,6 +13,40 @@ const cloudinary = require("cloudinary").v2;
 const cron = require("node-cron")
 const shell = require("shelljs")
 
+// cron.schedule("10 * * * * *", async () => {
+//   console.log("hi")
+//   const element = await StaticCouponSchema.find()
+
+//   element.forEach(async (ele) => {
+//     ele.$inc({ expiresInDays : -1})
+
+//     // if(ele.expiresInDays == 1){
+
+//     //   const company = ele.companyName
+
+//     //   const companyFollowers = await CompanySchema.find({companyName : company}).populate("followers")
+//     //   companyFollowers.followers.forEach((follower) => {
+//     //     mailTransporter.sendMail({
+//     //       from: process.env.EMAIL,
+//     //       to: follower.email,
+//     //       subject:
+//     //         "A coupon might be interested in is going to b expire tommorow.",
+//     //       text: "We thought you might want to look into this so you dont regret later.",
+//     //     })
+//     //   })
+
+      
+      
+//     // }
+
+    
+//     if(ele.expiresInDays == 0){
+//       ele.expired = False
+//     }--
+//   })
+
+// })
+
 function generateRandomString(length, type) {
   let result = '';
   const characters = {

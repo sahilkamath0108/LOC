@@ -9,7 +9,7 @@ const HomeCompany = () => {
       <img className="homecompany-inner" alt="" src="/rectangle-5@2x.png" />
       <img className="homecompany-child1" alt="" src="/rectangle-6@2x.png" />
       <a className="home2">Home</a>
-      <a className="brands1">Brands</a>
+      <a className="brands1">Generate</a>
       <a className="notifications1">Notifications</a>
       <img className="profile" alt="" src="https://source.unsplash.com/random/1000x1000/?girl" />
       <div className="homecompany-child2" />

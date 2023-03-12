@@ -40,6 +40,7 @@
 .brands1,
 .notifications1 {
   left: 1139px;
+  cursor: pointer;
 }
 .notifications1 {
   left: 1254px;
@@ -287,7 +288,7 @@
 }
 .homecompany {
   position: relative;
-  
+  background-color: white;
   width: 100%;
   height: 1420px;
   overflow: hidden;
@@ -577,7 +578,7 @@ a{
 }
 .home {
   position: relative;
-  background-color: var(--color-white);
+  background-color: white;
   width: 100%;
   height: 1420px;
   overflow: hidden;
@@ -605,4 +606,64 @@ a{
 .card{
   padding-right: 20px;
   padding-bottom: 20px;
+}
+.ccard{
+  width: 450px;
+  height: 45vh;
+  background-color: linear-gradient(#8ECFEF , #31326F);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coupon-card{
+  background: linear-gradient(110deg,#8ECFEF , #31326F);
+  color: white;
+  text-align: center;
+  padding: 40px 100px;
+  border-radius: 15px;
+  position: relative;
+}
+.logo_b{
+  width: 80px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.coupon-card h3{
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 40px;
+}
+.coupon-row{
+  display: flex;
+  align-items: center;
+  margin: 25px auto;
+  width: fit-content;
+}
+#cpncode{
+  border: 1px dashed white;
+  padding: 10px 20px;
+  border-right:0 ;
+}
+#cpnbtn{
+  border: 1px solid white;
+  background: white;
+  padding: 10px 10px ;
+  color: rgb(9, 9, 9);
+  cursor: pointer;
+}
+.circle1,.circle2{
+  background:white ;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.circle1{
+  left: -25px;
+}
+.circle2{
+
+  left: 400px;
 }

@@ -2,18 +2,31 @@ import { FormControlLabel, Checkbox, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Card, CardContent, Typography, Grid } from "@mui/material";
 import axios from "axios";
+import { useNavigate  } from "react-router-dom";
 import "./HomeCompany.css";
 
 
   const HomeCompany = () => {
+    // let cpnbtn = document.getElementById("cpnbtn");
+    // let cpncode = document.getElementById("cpncode");
+    // cpnbtn.onclick = ()=>{
+    //     navigator.clipboard.writeText(cpncode.innerHTML);
+    //     cpnbtn.innerHTML="Copied!";
+     
+    // }
+
     const [coupons, setCoupons] = useState([]);
+    const navigate = useNavigate();
+    const generatecoupon=()=>{
+      navigate("/CouponGenerator");
+    }
   
     useEffect(() => {
       const fetchData = async () => {
         try {
           const response = await axios.get("http://localhost:3001/company/allCoupons", {
             headers: {
-              Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDBjOWQ4MTY2Y2IyYTc2M2M5MDg0NjgiLCJpYXQiOjE2Nzg1NzQ4NDN9.qW7qXMeKCdD5K9Z5ygIFM-cJzNg9ieRAwZh0WWJIwa0",
+              Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDBjOWQ4MTY2Y2IyYTc2M2M5MDg0NjgiLCJpYXQiOjE2Nzg1OTM2MTl9.pUEqBDLrzf6898PTumtZTWxxh1rftNS_EqoJMhl9O00",
             },
           });
           setCoupons(response.data.data);
@@ -31,8 +44,8 @@ import "./HomeCompany.css";
       <img className="homecompany-inner" alt="" src="/rectangle-5@2x.png" />
       <img className="homecompany-child1" alt="" src="/rectangle-6@2x.png" />
       <a className="home2">Home</a>
-      <a className="brands1">Generate</a>
-      <a className="notifications1">Notifications</a>
+      <a className="brands1" onClick={generatecoupon} >Generate Coupons</a>
+     
       <img className="profile" alt="" src="https://source.unsplash.com/random/1000x1000/?girl" />
       <div className="homecompany-child2" />
       <b className="filters1">Filters</b>
@@ -141,18 +154,20 @@ import "./HomeCompany.css";
 
       {coupons.map((coupon) => (
          <Grid item xs={12} md={6} lg={3} className='card'>
-      <Card className="coupon">
-      <Typography gutterBottom variant="overline" component="div" color='#31326F' paddingLeft={'10px'} fontWeight='bold'>
-                                {coupon.product}
-                                </Typography>
-                                <Typography gutterBottom fontSize={'20px'} marginLeft={'10px'} fontWeight={'bold'} component="div">
-                                {coupon.detail}
-                                </Typography>
-                             
-                                <Typography variant="subtitle1" marginLeft={'10px'} fontSize={'15px'} color="text.secondary">
-                                {coupon.companyName}
-                                </Typography>
-        </Card>
+      <div className='ccard'>
+        <div className='coupon-card'>
+   <h2>{coupon.companyName}</h2>
+            <h3>{coupon.detail}</h3>
+            <p>Expires in :{coupon.expiresInDays} Days</p>
+            <div className='coupon-row'>
+                <span id='cpncode'>iudbcim</span>
+                <span id='cpnbtn'>Copy Code</span>
+            </div>
+            <div className='circle1'></div>
+            <div className='circle2'></div>
+        </div>
+    </div>
+
         </Grid>
       
       ))}

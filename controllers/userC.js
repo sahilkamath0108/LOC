@@ -374,6 +374,18 @@ const followCompany = async (req,res) => {
 
 }
 
+//view self bought coupons
+
+const selfBought = async (req,res) => {
+	const userId = req.user._id
+	const user = await UserSchema.findById({_id : userId}).populate("couponsBought reviews following").select("-password")
+
+	res.json({
+		success : true,
+		data: user
+	})
+}
+
 module.exports = {
     createUser,
     uploadPfp,
@@ -388,5 +400,6 @@ module.exports = {
 	writeReview,
   allCompanies,
   companySelfCoupons,
-  followCompany
+  followCompany,
+  selfBought
 }

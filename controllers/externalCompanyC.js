@@ -12,29 +12,39 @@ const cloudinary = require("cloudinary").v2;
 
 
 const verify = async(req,res) => {
-    const emailId = "sahilkamath0108@gmail.com"
+    const emailId = req.body.email
     const code = req.body.code
 
     const user = await UserSchema.find({email : emailId})
+    let count = 0
+    // console.log(user[0].tempCode)
 
-    user.tempCode.forEach((ele)=> {
-        if(ele == code){
+   for (let i = 0; i < user[0].tempCode.length; i++) {
+    if(user[0].tempCode[i] === code){
+         count =1
+         break
+     }else{
+         count = 0
+     }
+   } 
+
+
+    if(count ==1 ){
             res.status(200).json({
                 success : true,
                 message : "verified user"
             })
         }else{
             res.status(404).json({
-                success : false,
-                message : "False"
-            })
+                    success : false,
+                    message : "False"
+                })
         }
-    })
 }
 
 const verifyBuyer = async (req,res) => {
     try{
-    const emailId = "sahilkamath0108@gmail.com"
+    const emailId = req.body.email
     const code = req.body.code
 
     const user = await UserSchema.find({email : emailId})

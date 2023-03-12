@@ -44,4 +44,7 @@ router.post("/company/:companyId", auth.authToken, userC.companySelfCoupons)
 //follow a company
 router.post("/company/:companyId", auth.authToken, userC.followCompany)
 
+//view self bought  coupons
+router.get("/selfBought", auth.authToken, userC.selfBought)
+
 module.exports = router;

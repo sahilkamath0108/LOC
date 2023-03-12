@@ -1,11 +1,33 @@
 import { FormControlLabel, Checkbox, Button } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Card, CardContent, Typography, Grid } from "@mui/material";
+import axios from "axios";
 import "./HomeCompany.css";
 
-const HomeCompany = () => {
+
+  const HomeCompany = () => {
+    const [coupons, setCoupons] = useState([]);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get("http://localhost:3001/company/allCoupons", {
+            headers: {
+              Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDBjOWQ4MTY2Y2IyYTc2M2M5MDg0NjgiLCJpYXQiOjE2Nzg1NzQ4NDN9.qW7qXMeKCdD5K9Z5ygIFM-cJzNg9ieRAwZh0WWJIwa0",
+            },
+          });
+          setCoupons(response.data.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchData();
+    }, []);
+  
+
   return (
     <div className="homecompany">
-      <img className="homecompany-child" alt="" src="/rectangle-86.svg" />
-      <img className="homecompany-item" alt="" src="/rectangle-87.svg" />
+
       <img className="homecompany-inner" alt="" src="/rectangle-5@2x.png" />
       <img className="homecompany-child1" alt="" src="/rectangle-6@2x.png" />
       <a className="home2">Home</a>
@@ -115,6 +137,27 @@ const HomeCompany = () => {
         control={<Checkbox color="primary" size="medium" />}
       />
       
+     <div className="main">
+
+      {coupons.map((coupon) => (
+         <Grid item xs={12} md={6} lg={3} className='card'>
+      <Card className="coupon">
+      <Typography gutterBottom variant="overline" component="div" color='#31326F' paddingLeft={'10px'} fontWeight='bold'>
+                                {coupon.product}
+                                </Typography>
+                                <Typography gutterBottom fontSize={'20px'} marginLeft={'10px'} fontWeight={'bold'} component="div">
+                                {coupon.detail}
+                                </Typography>
+                             
+                                <Typography variant="subtitle1" marginLeft={'10px'} fontSize={'15px'} color="text.secondary">
+                                {coupon.companyName}
+                                </Typography>
+        </Card>
+        </Grid>
+      
+      ))}
+   
+   </div>
     </div>
   );
 };
